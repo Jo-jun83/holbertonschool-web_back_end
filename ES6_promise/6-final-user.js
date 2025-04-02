@@ -6,13 +6,13 @@ export default async function handleProfileSignup(firstName, lastName, fileName)
         signUpUser(firstName, lastName),
         uploadPhoto(fileName),
     ]);
-    const array = [];
+    const y = [];
     results.forEach(element => {
-        array.push({
+        y.push({
             status: element.status,
-            value: element.value || element.reason,
+            value: element.value || String(element.reason),
         });
     });
 
-    return array
+    return y
 }
