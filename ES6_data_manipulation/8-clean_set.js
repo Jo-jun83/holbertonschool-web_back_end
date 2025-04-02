@@ -1,10 +1,21 @@
 const cleanSet = (set, startString) => {
-  if (!startString) return '';
+  const str = [];
 
-  return [...set]
-    .filter((word) => word.startsWith(startString))
-    .map((word) => word.slice(startString.length))
-    .join('-');
+  if (
+    typeof set !== 'object'
+    || typeof startString !== 'string'
+    || startString.length === 0
+  ) {
+    return '';
+  }
+
+  for (const item of set) {
+    if (item && item.startsWith(startString)) {
+      str.push(item.slice(startString.length));
+    }
+  }
+
+  return str.join('-');
 };
 
 export default cleanSet;
