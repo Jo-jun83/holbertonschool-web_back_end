@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """
 This module provides a function `make_multiplier` that generates
 a multiplier function for floating-point numbers.
