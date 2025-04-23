@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+"""
+This module provides a function to calculate the floor of a float number.
+"""
+
 import math
 
 

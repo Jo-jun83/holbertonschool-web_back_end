@@ -1,4 +1,10 @@
 #!/usr/bin/python3
+"""
+This module contains a function `to_kv` that converts a key and a value
+into a tuple where the key is a string and the value is the square of
+the input number (int or float).
+"""
+
 from typing import Union, Tuple
 
 

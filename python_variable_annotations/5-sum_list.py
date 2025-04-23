@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+"""
+This module contains a function to calculate the sum of a list of floats.
+"""
+
 from typing import List
 
 

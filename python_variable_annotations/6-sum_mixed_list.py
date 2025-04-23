@@ -1,4 +1,9 @@
 #!/usr/bin/python3
+"""
+This module contains a function that calculates the sum of a list
+containing integers and floats, returning the result as a float.
+"""
+
 from typing import List, Union
 
 
