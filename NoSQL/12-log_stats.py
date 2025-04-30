@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 """This script connects to a MongoDB database, retrieves log statistics
 from an 'nginx' collection, and prints the results."""
-from pymongo import MongoClient
+import pymongo
 
 
 def print_logs():
     """Connects to the MongoDB 'nginx' collection, retrieves log statistics,
     and prints the total number of logs, counts of HTTP methods, and
     status checks."""
-    client = MongoClient()
+    client = pymongo.MongoClient("mongodb://localhost:27017/")
     collection = client.logs.nginx
 
     logs = collection.count_documents({})
