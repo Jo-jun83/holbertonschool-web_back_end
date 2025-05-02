@@ -4,7 +4,7 @@ from an 'nginx' collection, and prints the results."""
 import pymongo
 
 
-def print_logs():
+if __name__ == "__main__":
     """Connects to the MongoDB 'nginx' collection, retrieves log statistics,
     and prints the total number of logs, counts of HTTP methods, and
     status checks."""
@@ -21,12 +21,10 @@ def print_logs():
 
     print("{} logs".format(logs))
     print("Methods:")
-    print("\t method GET: {}".format(get))
-    print("\t method POST: {}".format(post))
-    print("\t method PUT: {}".format(put))
-    print("\t method PATCH: {}".format(patch))
-    print("\t method DELETE: {}".format(delete))
+    print("\tmethod GET: {}".format(get))
+    print("\tmethod POST: {}".format(post))
+    print("\tmethod PUT: {}".format(put))
+    print("\tmethod PATCH: {}".format(patch))
+    print("\tmethod DELETE: {}".format(delete))
     print("{} status check".format(status))
 
-
-print_logs()
