@@ -40,23 +40,24 @@ class Server:
         return self.__indexed_dataset
 
     def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
-        assert isinstance(index, int) and index >= 0, \
-            "index doit être un entier positif"
-
         indexed_data = self.indexed_dataset()
-        assert index < len(indexed_data), "index est hors limite"
 
-        data = []
+        assert index is not None, "Index cannot be None"
+        assert isinstance(index, int) and index >= 0, "Index must be a non-negative integer"
+        assert index < len(indexed_data), "Index is out of range"
+
+        current_page = []
         current_index = index
 
-        while len(data) < page_size and current_index < len(indexed_data):
+        while len(current_page) < page_size and current_index < len(indexed_data) + page_size:
             if current_index in indexed_data:
-                data.append(indexed_data[current_index])
+                current_page.append(indexed_data[current_index])
             current_index += 1
 
         return {
             "index": index,
-            "data": data,
-            "page_size": len(data),
+            "data": current_page,
+            "page_size": len(current_page),
             "next_index": current_index
         }
+
