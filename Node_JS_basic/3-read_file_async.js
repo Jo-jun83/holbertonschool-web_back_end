@@ -12,7 +12,7 @@ async function countStudents(path) {
 
     const fields = {};
     for (const line of students) {
-      const [firstName, lastName, age, field] = line.split(',');
+      const [firstName, , , field] = line.split(',');
       if (!fields[field]) {
         fields[field] = [];
       }
@@ -20,8 +20,10 @@ async function countStudents(path) {
     }
 
     for (const field in fields) {
-      const names = fields[field].join(', ');
-      console.log(`Number of students in ${field}: ${fields[field].length}. List: ${names}`);
+      if (Object.prototype.hasOwnProperty.call(fields, field)) {
+        const names = fields[field].join(', ');
+        console.log(`Number of students in ${field}: ${fields[field].length}. List: ${names}`);
+      }
     }
   } catch (error) {
     console.error('Erreur d\'origine :', error.message);
