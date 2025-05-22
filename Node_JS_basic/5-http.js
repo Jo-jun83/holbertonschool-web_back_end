@@ -10,8 +10,8 @@ const app = http.createServer((req, res) => {
     res.end('Hello Holberton School!');
   } else if (req.url === '/students') {
     try {
-      const data = fs.readFileSync(DATABASE, 'utf8').trim(); 
-      const lines = data.split('\n').filter(line => line.trim() !== '');
+      const data = fs.readFileSync(DATABASE, 'utf8').trim();
+      const lines = data.split('\n').filter((line) => line.trim() !== '');
       const students = lines.slice(1);
 
       const fields = {};
