@@ -1,6 +1,6 @@
-const app = require('http');
+const http = require('http');
 
-app.createServer((req, res) => {
+const app = http.createServer((req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/plain' });
   res.end('Hello Holberton School!');
 });
