@@ -24,7 +24,9 @@ const app = http.createServer((req, res) => {
       let response = 'This is the list of our students\n';
       response += `Number of students: ${students.length}\n`;
       for (const field in fields) {
-        response += `Number of students in ${field}: ${fields[field].length}. List: ${fields[field].join(', ')}\n`;
+        if (Object.prototype.hasOwnProperty.call(fields, field)) {
+          response += `Number of students in ${field}: ${fields[field].length}. List: ${fields[field].join(', ')}\n`;
+        }
       }
 
       res.writeHead(200, { 'Content-Type': 'text/plain' });
