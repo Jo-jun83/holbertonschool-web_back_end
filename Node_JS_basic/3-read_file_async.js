@@ -2,33 +2,36 @@ const fs = require('fs').promises;
 
 async function countStudents(path) {
   try {
-    const data = await fs.readFile(path, 'utf8');
+    const data = await fs.readFile(path, 'utf-8');
 
-    const lines = data.trim().split('\n');
+    const lines = data.split('\n').filter((line) => line.trim() !== '');
 
     const students = lines.slice(1);
 
-    console.log(`Number of students: ${students.length}`);
+    let result = (`Number of students: ${students.length}\n`);
 
-    const fields = {};
-    for (const line of students) {
-      const [firstName, , , field] = line.split(',');
-      if (!fields[field]) {
-        fields[field] = [];
-      }
-      fields[field].push(firstName);
-    }
+    const fieldGroups = {};
 
-    for (const field in fields) {
-      if (Object.prototype.hasOwnProperty.call(fields, field)) {
-        const names = fields[field].join(', ');
-        console.log(`Number of students in ${field}: ${fields[field].length}. List: ${names}`);
+    students.forEach((student) => {
+      const fields = student.split(',');
+      const firstName = fields[0];
+      const field = fields[3];
+
+      if (!fieldGroups[field]) {
+        fieldGroups[field] = [];
+      }
+      fieldGroups[field].push(firstName);
+    });
+    for (const field in fieldGroups) {
+      if (Object.prototype.hasOwnProperty.call(fieldGroups, field)) {
+        const studentsList = fieldGroups[field].join(', ');
+        result += (`Number of students in ${field}: ${fieldGroups[field].length}. List: ${studentsList}\n`);
       }
     }
+    result = result.trim();
+    return result;
   } catch (error) {
-    console.error('Erreur d\'origine :', error.message);
     throw new Error('Cannot load the database');
   }
 }
-
 module.exports = countStudents;
